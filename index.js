@@ -1,6 +1,7 @@
 
 let btn = document.getElementById('submitBtn');
 let inputVal = document.getElementById('inputVal');
+let result = document.getElementById('result');
 
 
 btn.addEventListener('click',(e)=>{
@@ -9,10 +10,12 @@ btn.addEventListener('click',(e)=>{
      let val = inputVal.value
      console.log("val",val)
      let url = `https://rdwebdev.herokuapp.com/run?q=`+val
+     
      fetch(url, {
         method : "GET",
-        mode: 'no-cors'
+        mode: 'cors'
      })
      .then((response) => response.json())
-     .then((data) => console.log(data))
+     .then((data) => result.innerText = data.res)
+     .catch((error)=>result.innerText = error)
 })
